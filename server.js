@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -9,10 +10,12 @@ const corsOptions = require("./config/corsOptions");
 
 const PORT = process.env.PORT || 3500;
 
+console.log(process.env.NODE_ENV);
+
 app.use(logger);
 
 app.use(express.json());
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 app.use("/", express.static(path.join(__dirname, "/public")));
